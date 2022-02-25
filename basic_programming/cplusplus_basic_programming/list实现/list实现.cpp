@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include "mylist.h"
+﻿#include "mylist.h"
 int main()
 {
 	MyList list;

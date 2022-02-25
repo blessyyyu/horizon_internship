@@ -24,9 +24,9 @@ public:
 		this->list_.resize(lst.size());
 		std::copy(lst.begin(), lst.end(), this->list_.begin());
 	}
-
+	
 	~MyList(){}
-
+	// append函数以及它的重载
 	void append(const T & var) {
 		this->list_.push_back(var);
 	}
