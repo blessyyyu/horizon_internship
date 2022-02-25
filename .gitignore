@@ -1,3 +1,19 @@
+.vs
+*.tlog
+*.log
+*.idb
+*.pdb
+*.sln
+*.vcxproj
+*.vcxproj.*
+*/Debug/
+
+# python
+*.idea
+
+
+
+
 # Prerequisites
 *.d
 
