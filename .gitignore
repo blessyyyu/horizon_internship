@@ -9,6 +9,7 @@
 *.vcxproj.*
 *.ilk
 
+.clang-format
 
 
 
