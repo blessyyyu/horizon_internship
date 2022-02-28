@@ -20,7 +20,7 @@ def main(file_name: str):
     if file_name == "":
         print('No file name')
     with open(file_name, 'r', encoding='UTF-8') as f:
-        content = f.read()
+        content = f.readline()
         words = content.split(" ")
         # 去除标点并统计词频
         for i in range(len(words)):
@@ -30,9 +30,13 @@ def main(file_name: str):
                 dicts[words[i]] += 1
             else:
                 dicts.update({words[i]: 1})
-    to_write_str = dicts.__str__()
+    to_write_str = ""
+    word_count_list = []
+    for key in dicts:
+        word_count_list.append('%s %d\n' % (key, dicts[key]))
+    to_write_str = ''.join(word_count_list)
     print(to_write_str)
-    with open("word_count.txt", 'w+', encoding='UTF-8') as write_file:
+    with open("word_count.txt", 'w', encoding='UTF-8') as write_file:
         write_file.write(to_write_str)
 
     write_file.close()
