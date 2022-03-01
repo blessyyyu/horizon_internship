@@ -17,13 +17,25 @@ def main(file_name: str):
     :return: None
     """
     dicts = {}
+    # 修改路径
+    os.chdir(r'C:\Users\shaoqing.yu\Documents\horizon_internship\basic_programming\python_basic_programming')
     if file_name == "":
         print('No file name')
+        exit(1)
+    content = []
     with open(file_name, 'r', encoding='UTF-8') as f:
-        content = f.readline()
-        words = content.split(" ")
+        line = f.readline()
+        while line:
+            if line[-1] == '\n':
+                line = line[:-1] + " "
+            content.append(line)
+            line = f.readline()
+        content_str = "".join(content)
+        words = content_str.split(" ")
         # 去除标点并统计词频
         for i in range(len(words)):
+            if i == 43:
+                print(i)
             if words[i][-1] in string.punctuation:
                 words[i] = words[i][:-1]
             if words[i] in dicts:
@@ -44,13 +56,10 @@ def main(file_name: str):
 
 
 if __name__ == '__main__':
-    """ 接受一个-n file_name 的命令行参数
+    """ 手动输入一个文件名
     """
-    argv = sys.argv[1:]
-    opts, args = getopt.getopt(argv, "n:", ["name="])
     file_name = ""
-    for opt, arg in opts:
-        if opt in ['-n', '--name']:
-            file_name = arg
+    print('please input the file name of input text:')
+    file_name = input()
 
     main(file_name)

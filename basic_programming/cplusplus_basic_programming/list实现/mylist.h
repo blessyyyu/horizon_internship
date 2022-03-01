@@ -24,7 +24,7 @@ class MyList {
   ~MyList() {}
   // append函数以及它的重载
   void append(const T& var) { this->list_.push_back(var); }
-
+  // 这里append一个数组，是把它的所有元素拿出来append进去，而不是像list那样append一个数组进去
   void append(const std::vector<T>& values) {
     for (auto i = values.begin(); i != values.end(); i++) {
       this->list_.push_back(*i);

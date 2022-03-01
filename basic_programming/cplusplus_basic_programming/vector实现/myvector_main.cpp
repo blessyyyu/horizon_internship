@@ -1,9 +1,10 @@
 ﻿#include <iostream>
+
 #include "myvector.h"
-int main()
-{
+
+int main() {
   MyVector<int> test;
-  for(int i = 0; i < 10; i ++){
+  for (int i = 0; i < 10; i++) {
     test.push_back(i);
   }
   test.print();
@@ -13,6 +14,6 @@ int main()
     test.push_back(i);
   }
   test.print();
-  std::cout << "访问MyVector中的下标为10的元素：" << test[10] << std::endl;
+  std::cout << "visit the index 10 element:" << test[10] << std::endl;
   return 0;
 }
