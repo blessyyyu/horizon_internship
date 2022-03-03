@@ -1,14 +1,14 @@
-# Author: Cyan
-# Time : 2022/2/24 16:22
-# Description:
-# -*-coding:utf-8-*-
+'''
+Date: 2022-02-28 17:23:33
+LastEditors: Cyan
+LastEditTime: 2022-03-03 14:48:52
+'''
 import os
 import sys
 import getopt
 import string
 
 
-# TODO(shaoqing.yu): 大小写问题
 def main(file_name: str):
     """将file_name文件名中的单词统计它们的词频，
     输出到word_count.txt文件中
