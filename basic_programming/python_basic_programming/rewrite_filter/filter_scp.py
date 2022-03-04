@@ -1,34 +1,59 @@
 '''
 Date: 2022-03-03 14:49:36
 LastEditors: Cyan
-LastEditTime: 2022-03-03 19:08:29
+LastEditTime: 2022-03-04 11:43:44
 Description: rewrite the kaldi style filter_scp.pl
 '''
 import getopt
 import sys
 
 
-def filter(idlistfile: str, infile='', outfile='', f=1, exclude=False):
+def filter(idlistfile: str, infile='', f=1, exclude=False):
+    # id_list store the all
     id_list = []
+    # key: infile's f-th field, value: infile's line content
     infile_dict = {}
+    key_line = f - 1
+    to_write_list = []
+    to_write_str = ''
     with open(idlistfile, 'r', encoding='UTF-8') as f_idlist:
         line = f_idlist.readline()
         while line:
+            line = line.strip('\n')
             id_list.append(line)
             line = f_idlist.readline()
     if in_file == '':
         to_write_str = ''.join(id_list)
     else:
         # read file infile
+        infile_content_list = []
         with open(infile, 'r', encoding='UTF-8') as f_infile:
             line = f_infile.readline()
-            line_list = line.split()
+            while line:
+                line = line.strip('\n')
+                infile_content_list.append(line)
+                line_list = line.split(" ")
+                dict_key = line_list[key_line]
+                infile_dict.update({dict_key: line})
+                line = f_infile.readline()
+        # print(infile_dict)
 
-    with open(out_file, 'w', encoding='UTF-8') as f_outfile:
-        f_outfile.write(to_write_str)
+        if exclude:
+            for key, value in infile_dict.items():
+                if key not in id_list:
+                    to_write_list.append(value)
+        else:
+            # traversal the all id_list to find key
+            for i in range(len(id_list)):
+                if id_list[i] in infile_dict:
+                    to_write_list.append(infile_dict[id_list[i]])
+
+        to_write_str = '\n'.join(to_write_list)
+        f_infile.close()
+
+    print(to_write_str)
 
     f_idlist.close()
-    f_outfile.close()
 
 
 if __name__ == '__main__':
@@ -38,21 +63,21 @@ if __name__ == '__main__':
     in_file = ''
     out_file = ''
     id_list = ''
-    f = 1
-    exclude = False
-    assert len(args) == 2 or len(args) == 3
+    f_ = 1
+    exclude_ = False
+    assert len(args) == 1 or len(args) == 2
+    if len(args) == 1:
+        id_list = args[0]
     if len(args) == 2:
         id_list = args[0]
-        out_file = args[1]
-    if len(args) == 3:
-        id_list = args[0]
         in_file = args[1]
-        out_file = args[2]
 
     for opt, arg in opts:
         if opt in ['-f']:
-            f = arg
+            f_ = int(arg)
         if opt in ['--exclude']:
-            exclude = True
+            exclude_ = True
         # print("parameter: ", opt, "value: ", arg)
-    filter(id_list, outfile=out_file, f=f, exclude=exclude)
+    # print('id_list = ', id_list, 'infile = ',
+    #       in_file, 'f = ', f_, 'exclude = ', exclude_)
+    filter(id_list, infile=in_file, f=f_, exclude=exclude_)
