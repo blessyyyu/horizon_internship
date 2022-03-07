@@ -1,6 +1,12 @@
-﻿#ifndef MY_LIST_H
+﻿/*
+ * @Date: 2022-02-28 17:23:33
+ * @LastEditors: Cyan
+ * @LastEditTime: 2022-03-07 13:55:26
+ */
+#ifndef MY_LIST_H
 #define MY_LIST_H
 
+// 要用C++17 标准实现
 #include <iostream>
 #include <string>
 #include <variant>
