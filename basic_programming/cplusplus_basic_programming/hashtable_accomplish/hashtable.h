@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-03-02 14:28:55
  * @LastEditors: Cyan
- * @LastEditTime: 2022-03-03 14:24:04
+ * @LastEditTime: 2022-03-06 20:46:57
  */
 #ifndef HASH_TABLE_H_
 #define HASH_TABLE_H_
@@ -26,7 +26,6 @@ class MyHashMap {
   static int hash_function(int key) { return key * 3 + 1; }
 
   void set_valuenull() { valuenull_ = -1; }
-
   MyHashMap(int size) {
     size_ = size;
     hashtable_ = new HashNode<KeyType, ValueType>*[size_];

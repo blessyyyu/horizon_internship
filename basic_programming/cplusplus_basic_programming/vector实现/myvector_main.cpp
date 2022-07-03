@@ -15,5 +15,6 @@ int main() {
   }
   test.print();
   std::cout << "visit the index 10 element:" << test[10] << std::endl;
+  system("pause");
   return 0;
 }

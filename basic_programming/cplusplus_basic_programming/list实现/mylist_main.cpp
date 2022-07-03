@@ -12,5 +12,6 @@ int main() {
   T var = 1023;
   MyList list3(var);
   list3.print_vector();
+  system("pause");
   return 0;
 }

@@ -1,7 +1,7 @@
 '''
 Date: 2022-03-03 14:49:36
 LastEditors: Cyan
-LastEditTime: 2022-03-04 11:43:44
+LastEditTime: 2022-03-06 20:48:15
 Description: rewrite the kaldi style filter_scp.pl
 '''
 import getopt

@@ -11,6 +11,8 @@ workspace.*
 *.vcxproj.*
 *.ilk
 
+.history/
+
 .clang-format
 
 
