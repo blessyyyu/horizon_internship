@@ -1,9 +1,3 @@
-'''
-Date: 2022-03-03 14:49:36
-LastEditors: Cyan
-LastEditTime: 2022-03-06 20:48:15
-Description: rewrite the kaldi style filter_scp.pl
-'''
 import getopt
 import sys
 
@@ -17,25 +11,23 @@ def filter(idlistfile: str, infile='', f=1, exclude=False):
     to_write_list = []
     to_write_str = ''
     with open(idlistfile, 'r', encoding='UTF-8') as f_idlist:
-        line = f_idlist.readline()
-        while line:
+        for line in f_idlist:
             line = line.strip('\n')
             id_list.append(line)
-            line = f_idlist.readline()
+        line = f_idlist.readline()
+
     if in_file == '':
         to_write_str = ''.join(id_list)
     else:
         # read file infile
         infile_content_list = []
         with open(infile, 'r', encoding='UTF-8') as f_infile:
-            line = f_infile.readline()
-            while line:
+            for line in f_infile:
                 line = line.strip('\n')
                 infile_content_list.append(line)
                 line_list = line.split(" ")
                 dict_key = line_list[key_line]
                 infile_dict.update({dict_key: line})
-                line = f_infile.readline()
         # print(infile_dict)
 
         if exclude:

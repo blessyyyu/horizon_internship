@@ -1,8 +1,3 @@
-/*
- * @Date: 2022-03-02 14:28:55
- * @LastEditors: Cyan
- * @LastEditTime: 2022-03-06 20:46:57
- */
 #ifndef HASH_TABLE_H_
 #define HASH_TABLE_H_
 
@@ -23,7 +18,7 @@ struct HashNode {
 template <typename KeyType, typename ValueType>
 class MyHashMap {
  public:
-  static int hash_function(int key) { return key * 3 + 1; }
+  int HashFunction(int key) { return key * 3 + 1; }
 
   void set_valuenull() { valuenull_ = -1; }
   MyHashMap(int size) {
@@ -43,14 +38,15 @@ class MyHashMap {
         delete temp;
         temp = nullptr;
       }
-      delete hashtable_;
     }
+    delete hashtable_;
+    hashtable_ = nullptr;
   }
 
-  bool insert(KeyType key, ValueType value) {
+  bool Insert(KeyType key, ValueType value) {
     // 头插法
     // 求出哈希表的下标
-    int table_index = hash_function(key) % size_;
+    int table_index = HashFunction(key) % size_;
     HashNode<KeyType, ValueType>* head_node =
         new HashNode<KeyType, ValueType>(key, value);
     head_node->next_ = hashtable_[table_index];
@@ -58,8 +54,8 @@ class MyHashMap {
     return true;
   }
 
-  ValueType find(const KeyType& key) {
-    int index = hash_function(key) % size_;
+  ValueType Find(const KeyType& key) {
+    int index = HashFunction(key) % size_;
     if (hashtable_[index] == nullptr) {
       return valuenull_;
     }
@@ -75,8 +71,8 @@ class MyHashMap {
     return valuenull_;
   }
 
-  bool del(const KeyType& key) {
-    int index = hash_function(key) % size_;
+  bool Del(const KeyType& key) {
+    int index = HashFunction(key) % size_;
     HashNode<KeyType, ValueType>* cur = hashtable_[index];
     if (cur == nullptr) return false;
     if (cur->key_ == key) {
@@ -102,7 +98,7 @@ class MyHashMap {
     return false;
   }
 
-  void print() {
+  void Print() {
     for (int i = 0; i < size_; i++) {
       HashNode<KeyType, ValueType>* cur = hashtable_[i];
       while (cur) {
